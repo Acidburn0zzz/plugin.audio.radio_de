@@ -225,7 +225,7 @@ def __add_stations(stations, add_custom=False):
             'path': plugin.url_for(
                 'get_stream_url',
                 station_id=station_id,
-                station_name=station.get('name', ''),
+                station_name=station.get('name', '').encode('utf-8'),
             ),
             'is_playable': True,
         })
