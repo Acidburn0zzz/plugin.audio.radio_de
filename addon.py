@@ -175,8 +175,8 @@ def show_stations_by_category(category_type, category):
     return __add_stations(stations)
 
 
-@plugin.route('/station/<station_id>')
-def get_stream_url(station_id):
+@plugin.route('/station/<station_id>/<station_name>')
+def get_stream_url(station_id, station_name):
     if my_stations.get(station_id, {}).get('is_custom', False):
         stream_url = my_stations[station_id]['stream_url']
     else:
@@ -225,6 +225,7 @@ def __add_stations(stations, add_custom=False):
             'path': plugin.url_for(
                 'get_stream_url',
                 station_id=station_id,
+                station_name=station.get('name', ''),
             ),
             'is_playable': True,
         })
